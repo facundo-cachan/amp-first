@@ -1,6 +1,5 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-import { AmpIncludeAmpBind } from './AmpCustomElement'
+import { ReactNode } from "react";
+import { AmpIncludeAmpBind } from "./AmpCustomElement";
 
 /**
  * Renders an amp-state element, by either adding local state via `value`
@@ -8,7 +7,12 @@ import { AmpIncludeAmpBind } from './AmpCustomElement'
  *
  * @param {Props} props
  */
-export default function AmpState(props) {
+type AmpStateProps = {
+  id: string;
+  children?: ReactNode;
+  src: string;
+};
+export default function AmpState(props: AmpStateProps) {
   return (
     <>
       <AmpIncludeAmpBind />
@@ -23,11 +27,5 @@ export default function AmpState(props) {
         )}
       </amp-state>
     </>
-  )
-}
-
-AmpState.propTypes = {
-  id: PropTypes.string.isRequired,
-  children: PropTypes.any,
-  src: PropTypes.string,
+  );
 }

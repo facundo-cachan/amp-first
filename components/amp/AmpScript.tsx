@@ -1,6 +1,5 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-import { AmpIncludeAmpScript } from './AmpCustomElement'
+import { ReactNode } from "react";
+import { AmpIncludeAmpScript } from "./AmpCustomElement";
 
 /**
  * Embeds an AMP Script by either linking to a JS `src` file or embedding inline
@@ -9,7 +8,16 @@ import { AmpIncludeAmpScript } from './AmpCustomElement'
  *
  * @param {Props} props
  */
-export default function AmpScript(props) {
+type AmpScriptProps = {
+  id: string;
+  children?: ReactNode;
+  layout: string;
+  width: string;
+  height: string;
+  script: any;
+  src: string;
+};
+export default function AmpScript(props: AmpScriptProps) {
   return (
     <>
       <AmpIncludeAmpScript />
@@ -33,22 +41,12 @@ export default function AmpScript(props) {
         />
       )}
     </>
-  )
+  );
 }
 
 function generateInlineScript(script) {
-  if (typeof script === 'function') {
-    return `${script.toString()}()`
+  if (typeof script === "function") {
+    return `${script.toString()}()`;
   }
-  return String(script)
-}
-
-AmpScript.propTypes = {
-  id: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  layout: PropTypes.string.isRequired,
-  width: PropTypes.string,
-  height: PropTypes.string,
-  script: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  src: PropTypes.string,
+  return String(script);
 }
