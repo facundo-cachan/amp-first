@@ -1,20 +1,25 @@
-import PropTypes from 'prop-types'
-import NextHead from 'next/head'
-import { AmpIncludeAmpInstallServiceworker } from './amp/AmpCustomElement'
+import { ReactNode } from "react";
+import NextHead from "next/head";
+import { AmpIncludeAmpInstallServiceworker } from "./amp/AmpCustomElement";
 
+type LayoutProps = {
+  title: string;
+  children?: ReactNode;
+  description: string;
+};
 // Your app's theme color
-const THEME_COLOR = '#005af0'
+const THEME_COLOR = "#005af0";
 
 /**
  * A sample page layout installing the AMP Serviceworker by default.
  *
- * @param {Props} props
+ * @param {LayoutProps} props
  */
-const Layout = (props) => (
+const Layout = (props: LayoutProps) => (
   <>
-    <NextHead>
-      <title>{props.title || ''}</title>
-      <meta name="description" content={props.description || ''} />
+    <NextHead children={undefined}>
+      <title>{props.title || ""}</title>
+      <meta name="description" content={props.description || ""} />
       <meta name="theme-color" content={THEME_COLOR} />
       <link rel="icon" sizes="192x192" href="/static/images/icons-192.png" />
       <link rel="apple-touch-icon" href="/static/images/icons-192.png" />
@@ -34,9 +39,9 @@ const Layout = (props) => (
     <style jsx global>{`
       body {
         margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-          Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-          'Segoe UI Symbol';
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+          "Segoe UI Symbol";
         min-height: 100vh;
         scroll-behavior: smooth;
         text-rendering: optimizeSpeed;
@@ -44,11 +49,6 @@ const Layout = (props) => (
       }
     `}</style>
   </>
-)
+);
 
-Layout.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-}
-
-export default Layout
+export default Layout;
